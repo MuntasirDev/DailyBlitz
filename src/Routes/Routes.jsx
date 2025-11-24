@@ -3,6 +3,8 @@ import { RouterProvider } from "react-router/dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home";
 import CategoryNews from "../Pages/CategoryNews";
+import Error from "../Pages/Error";
+
 
 const router = createBrowserRouter([
   {
@@ -15,7 +17,10 @@ const router = createBrowserRouter([
       },
 {
   path:"/category/:id",
-  element:<CategoryNews></CategoryNews>
+  element:<CategoryNews></CategoryNews>,
+  loader: ()=>{
+    return fetch('/news.json')
+}
 }
        
     ],
@@ -31,7 +36,7 @@ const router = createBrowserRouter([
 
 {
     path: "/*",   
-    element: <div> Error </div>
+    element: <Error></Error>
 }
 
 
