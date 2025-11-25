@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../Componets/NavBar";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider.jsx";
 
 const Login = () => {
 
+  const [error, setError] = useState(null);
+
+
   const { signIn } = useContext(AuthContext);
+const location  = useLocation();
+// console.log(location);
+  
+
+  const navigate = useNavigate();
+
 
 
 const handleLogin = (event) => {
@@ -19,16 +28,22 @@ const handleLogin = (event) => {
    signIn(email, password)
     .then (result => {
         const loggedUser = result.user;
-        console.log (loggedUser);
+        // console.log (loggedUser);
         alert ("Login Successful");
         form.reset();
+
+        navigate (`${location.state ? location.state : '/'}`);
+
+
     })
   
     .catch(error => {
 
       const errorCode = error.code;
       const errorMessage = error.message;
-    alert(error.message);
+    // alert(error.message);
+
+    setError(errorCode.message);
 
     });
 
@@ -45,17 +60,22 @@ const handleLogin = (event) => {
 {/* Email */}
 
             <label className="label font-semibold">Email</label>
-            <input type="email" name="email" className="input input-bordered" placeholder="Email" />
-
+            <input type="email" required name="email" className="input input-bordered" placeholder="Email" />
    
    {/* Password */}
    
             <label className="label font-semibold">Password</label>
             <input
-              type="password" name="password"
+              type="password" required name="password"
               className="input input-bordered"
               placeholder="Password"
             />
+
+            <div className="link link-hover"> Forgot Password? </div>
+
+            {
+              error && <p className="text-red-600 font-semibold">{error}</p>
+            }
 
            
 

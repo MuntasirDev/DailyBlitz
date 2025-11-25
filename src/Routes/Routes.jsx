@@ -1,4 +1,7 @@
-import { createBrowserRouter } from "react-router";
+import {
+  createBrowserRouter,
+  UNSAFE_WithHydrateFallbackProps,
+} from "react-router";
 import { RouterProvider } from "react-router/dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home";
@@ -7,7 +10,10 @@ import Error from "../Pages/Error";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AuthLayouts from "../Layouts/AuthLayouts";
-
+import Newsread from "../Pages/Newsread";
+import PrivateRoute from "../Provider/PrivateRoute";
+import Loading from "../Pages/loading";
+import About from "../Pages/About";
 
 const router = createBrowserRouter([
   {
@@ -15,45 +21,56 @@ const router = createBrowserRouter([
     element: <HomeLayout></HomeLayout>,
 
     children: [
-      { path: "/", 
-        element: <Home></Home>  
+      { path: "/", element: <Home></Home> },
+      {
+        path: "/category/:id",
+        element: <CategoryNews></CategoryNews>,
+        loader: () => {
+          return fetch("/news.json");
+        },
       },
-{
-  path:"/category/:id",
-  element:<CategoryNews></CategoryNews>,
-  loader: ()=>{
-    return fetch('/news.json')
-}
-}
-       
     ],
   },
-    {
-        path: "/auth",
-        element: <AuthLayouts></AuthLayouts>,
-        children: [
-            {
-              path: "/auth/login",
-              element: <Login></Login>
-            },
-            {
-              path: "/auth/register",
-              element: <Register></Register>
-            },
-        ]
+  {
+    path: "/auth",
+    element: <AuthLayouts></AuthLayouts>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "/news/:id",
+    element: (
+      <PrivateRoute>
+        <Newsread></Newsread>
+      </PrivateRoute>
+    ),
+    loader: () => {
+      return fetch("/news.json");
     },
-{
-    path: "/news",
-    element: <div> News Layout</div>
-},
+  },
 
-{
-    path: "/*",   
-    element: <Error></Error>
-}
+   {
+    path: "/about",
+    element: <About></About>,
+  },
+
+  {
+    path: "/*",
+    element: <Error></Error>,
+  },
+
+ 
+
 
 
 ]);
 
- export default  router
-
+export default router;

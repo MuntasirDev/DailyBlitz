@@ -14,7 +14,7 @@ const NavBar = () => {
     // Implement logout functionality here
     console.log("Logout clicked");
     logout().then (()=>{ alert("Logout successful"); }).catch (error => {
-      console.log (error);
+      // console.log (error);
     });
 
   }
@@ -36,7 +36,7 @@ const NavBar = () => {
 
   {/* Login/Logout */}
   <div className="login-btn flex flex-wrap items-center gap-2 sm:gap-5">
-    <img src={userIcon} alt="User" className="w-5 h-5 rounded-full" />
+    <img className=" w-12 rounded full" src={`${ user ? user.photoURL : userIcon}`} alt="User" />
     {user ? (
       <button onClick={handleLogout} className="btn btn-primary px-4 sm:px-10 text-white text-xs sm:text-sm">
         LogOut

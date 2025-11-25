@@ -1,6 +1,7 @@
 import React from "react";
 import { FaEye } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
   const {
@@ -10,6 +11,7 @@ const NewsCard = ({ news }) => {
     details,
     rating,
     total_view,
+    id,
   } = news;
 
   return (
@@ -49,9 +51,9 @@ const NewsCard = ({ news }) => {
       <div className="px-4 pb-4">
         <p className="text-gray-600">
           {details.slice(0, 200)}...
-          <span className="text-blue-600 cursor-pointer font-medium">
+          <Link to={`/news/${news.id}`} className="text-blue-600 cursor-pointer font-medium">
             Read More
-          </span>
+          </Link>
         </p>
 
         {/* Rating + Views */}
