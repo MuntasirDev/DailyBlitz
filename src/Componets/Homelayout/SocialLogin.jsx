@@ -1,18 +1,20 @@
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+
 const SocialLogin = () => {
   return (
-    <div>
-      <h2 className="font-bold mb-5">Login Now</h2>
-      <div className="space-y-3">
-        <button className="btn w-full btn-outline btn-secondary">
-  <FaGoogle size={24} /> Login with Google
-</button>
+    <div className="w-full max-w-md mx-auto p-2">
+      <h2 className="font-bold mb-4 text-center sm:text-left text-lg sm:text-xl">Login Now</h2>
+      
+      <div className="flex flex-col gap-3 w-full">
+        <button className="btn w-full btn-outline btn-secondary flex items-center justify-center gap-2">
+          <FaGoogle size={20} />
+          <span>Login with Google</span>
+        </button>
 
-        <button className="btn btn-outline btn-primary w-full">
-          {" "}
-          <FaGithub size={24} /> Login with Github
+        <button className="btn w-full btn-outline btn-primary flex items-center justify-center gap-2">
+          <FaGithub size={20} />
+          <span>Login with Github</span>
         </button>
       </div>
     </div>
