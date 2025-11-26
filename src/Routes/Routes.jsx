@@ -14,6 +14,7 @@ import Newsread from "../Pages/Newsread";
 import PrivateRoute from "../Provider/PrivateRoute";
 import Loading from "../Pages/loading";
 import About from "../Pages/About";
+import Carrer from "../Pages/Carrer";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
    {
     path: "/about",
     element: <About></About>,
+  },
+
+  {
+      path: "/career",
+      element: <Carrer></Carrer>
   },
 
   {

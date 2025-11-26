@@ -6,6 +6,8 @@ import NavBar from "../Componets/NavBar";
 import LeftAside from "../Componets/Homelayout/LeftAside";
 import RightAside from "../Componets/Homelayout/RightAside";
 import Loading from "../Pages/loading";
+import About from "../Pages/About";
+import Carrer from "../Pages/Carrer";
 
 const HomeLayout = () => {
   const {state} = useNavigate();
@@ -38,6 +40,16 @@ const HomeLayout = () => {
   </aside>
 </main>
 
+<main>
+  <About>
+
+  </About>
+
+  
+</main>
+<main>
+  <Carrer></Carrer>
+</main>
     </div>
   );
 };
