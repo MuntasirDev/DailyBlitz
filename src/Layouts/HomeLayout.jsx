@@ -40,16 +40,7 @@ const HomeLayout = () => {
   </aside>
 </main>
 
-<main>
-  <About>
 
-  </About>
-
-  
-</main>
-<main>
-  <Carrer></Carrer>
-</main>
     </div>
   );
 };
